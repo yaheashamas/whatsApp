@@ -1,0 +1,596 @@
+{
+    "data":[
+        {
+            "name": "Canada",
+            "code": "CA",
+            "flag": "🇨🇦",
+            "regionalNumber": "+1",
+            "minPhoneLength": "10",
+            "maxPhoneLength": "10"
+        },
+        {
+            "name": "United States",
+            "code": "US",
+            "flag": "🇺🇸",
+            "regionalNumber": "+1",
+            "minPhoneLength": "10",
+            "maxPhoneLength": "10"
+        },
+        {
+            "name": "Denmark",
+            "code": "DK",
+            "flag": "🇩🇰",
+            "regionalNumber": "+45",
+            "minPhoneLength": "8",
+            "maxPhoneLength": "8"
+        },
+        {
+            "name": "France",
+            "code": "FR",
+            "flag": "🇫🇷",
+            "regionalNumber": "+33",
+            "minPhoneLength": "9",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "Spain",
+            "code": "ES",
+            "flag": "🇪🇸",
+            "regionalNumber": "+34",
+            "minPhoneLength": "9",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "Germany",
+            "code": "DE",
+            "flag": "🇩🇪",
+            "regionalNumber": "+49",
+            "minPhoneLength": "6",
+            "maxPhoneLength": "13"
+        },
+        {
+            "name": "Norway",
+            "code": "NO",
+            "flag": "🇳🇴",
+            "regionalNumber": "+47",
+            "minPhoneLength": "5",
+            "maxPhoneLength": "8"
+        },
+        {
+            "name": "Sweden",
+            "code": "SE",
+            "flag": "🇸🇪",
+            "regionalNumber": "+46",
+            "minPhoneLength": "7",
+            "maxPhoneLength": "13"
+        },
+        {
+            "name": "Armenia",
+            "code": "AM",
+            "flag": "🇦🇲",
+            "regionalNumber": "+374",
+            "minPhoneLength": "8",
+            "maxPhoneLength": "8"
+        },
+        {
+            "name": "Serbia",
+            "code": "RS",
+            "flag": "🇷🇸",
+            "regionalNumber": "+381",
+            "minPhoneLength": "4",
+            "maxPhoneLength": "12"
+        },
+        {
+            "name": "Romania",
+            "code": "RO",
+            "flag": "🇷🇴",
+            "regionalNumber": "+40",
+            "minPhoneLength": "10",
+            "maxPhoneLength": "10"
+        },
+        {
+            "name": "Netherlands",
+            "code": "NL",
+            "flag": "🇳🇱",
+            "regionalNumber": "+31",
+            "minPhoneLength": "9",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "United Kingdom",
+            "code": "GB",
+            "flag": "🇬🇧",
+            "regionalNumber": "+44",
+            "minPhoneLength": "7",
+            "maxPhoneLength": "10"
+        },
+        {
+            "name": "Egypt",
+            "code": "EG",
+            "flag": "🇪🇬",
+            "regionalNumber": "+20",
+            "minPhoneLength": "10",
+            "maxPhoneLength": "10"
+        },
+        {
+            "name": "Jordan",
+            "code": "JO",
+            "flag": "🇯🇴",
+            "regionalNumber": "+962",
+            "minPhoneLength": "5",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "Kuwait",
+            "code": "KW",
+            "flag": "🇰🇼",
+            "regionalNumber": "+965",
+            "minPhoneLength": "7",
+            "maxPhoneLength": "8"
+        },
+        {
+            "name": "Saudi Arabia",
+            "code": "SA",
+            "flag": "🇸🇦",
+            "regionalNumber": "+966",
+            "minPhoneLength": "8",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "Yemen",
+            "code": "YE",
+            "flag": "🇾🇪",
+            "regionalNumber": "+967",
+            "minPhoneLength": "6",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "Oman",
+            "code": "OM",
+            "flag": "🇴🇲",
+            "regionalNumber": "+968",
+            "minPhoneLength": "7",
+            "maxPhoneLength": "8"
+        },
+        {
+            "name": "Palestinian Territory",
+            "code": "PS",
+            "flag": "🇵🇸",
+            "regionalNumber": "+972",
+            "minPhoneLength": "8",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "United Arab Emirates",
+            "code": "AE",
+            "flag": "🇦🇪",
+            "regionalNumber": "+971",
+            "minPhoneLength": "8",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "Bahrain",
+            "code": "BH",
+            "flag": "🇧🇭",
+            "regionalNumber": "+973",
+            "minPhoneLength": "8",
+            "maxPhoneLength": "8"
+        },
+        {
+            "name": "Qatar",
+            "code": "QA",
+            "flag": "🇶🇦",
+            "regionalNumber": "+974",
+            "minPhoneLength": "3",
+            "maxPhoneLength": "8"
+        },
+        {
+            "name": "Australia",
+            "code": "AU",
+            "flag": "🇦🇺",
+            "regionalNumber": "+61",
+            "minPhoneLength": "5",
+            "maxPhoneLength": "15"
+        },
+        {
+            "name": "Argentina",
+            "code": "AR",
+            "flag": "🇦🇷",
+            "regionalNumber": "+54",
+            "minPhoneLength": "10",
+            "maxPhoneLength": "10"
+        },
+        {
+            "name": "Brazil",
+            "code": "BR",
+            "flag": "🇧🇷",
+            "regionalNumber": "+55",
+            "minPhoneLength": "10",
+            "maxPhoneLength": "10"
+        },
+        {
+            "name": "Austria",
+            "code": "AT",
+            "flag": "🇦🇹",
+            "regionalNumber": "+43",
+            "minPhoneLength": "4",
+            "maxPhoneLength": "13"
+        },
+        {
+            "name": "Belgium",
+            "code": "BE",
+            "flag": "🇧🇪",
+            "regionalNumber": "+32",
+            "minPhoneLength": "8",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "China",
+            "code": "CN",
+            "flag": "🇨🇳",
+            "regionalNumber": "+86",
+            "minPhoneLength": "5",
+            "maxPhoneLength": "12"
+        },
+        {
+            "name": "Lebanon",
+            "code": "LB",
+            "flag": "🇱🇧",
+            "regionalNumber": "+961",
+            "minPhoneLength": "7",
+            "maxPhoneLength": "8"
+        },
+        {
+            "name": "Türkiye",
+            "code": "TR",
+            "flag": "🇹🇷",
+            "regionalNumber": "+90",
+            "minPhoneLength": "10",
+            "maxPhoneLength": "10"
+        },
+        {
+            "name": "Greece",
+            "code": "GR",
+            "flag": "🇬🇷",
+            "regionalNumber": "+30",
+            "minPhoneLength": "10",
+            "maxPhoneLength": "10"
+        },
+        {
+            "name": "Malaysia",
+            "code": "MY",
+            "flag": "🇲🇾",
+            "regionalNumber": "+60",
+            "minPhoneLength": "7",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "Morocco",
+            "code": "MA",
+            "flag": "🇲🇦",
+            "regionalNumber": "+212",
+            "minPhoneLength": "9",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "Georgia",
+            "code": "GE",
+            "flag": "🇬🇪",
+            "regionalNumber": "+995",
+            "minPhoneLength": "9",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "Finland",
+            "code": "FI",
+            "flag": "🇫🇮",
+            "regionalNumber": "+358",
+            "minPhoneLength": "5",
+            "maxPhoneLength": "12"
+        },
+        {
+            "name": "Switzerland",
+            "code": "CH",
+            "flag": "🇨🇭",
+            "regionalNumber": "+41",
+            "minPhoneLength": "4",
+            "maxPhoneLength": "12"
+        },
+        {
+            "name": "Tunisia",
+            "code": "TN",
+            "flag": "🇹🇳",
+            "regionalNumber": "+216",
+            "minPhoneLength": "8",
+            "maxPhoneLength": "8"
+        },
+        {
+            "name": "Portugal",
+            "code": "PT",
+            "flag": "🇵🇹",
+            "regionalNumber": "+351",
+            "minPhoneLength": "9",
+            "maxPhoneLength": "11"
+        },
+        {
+            "name": "New Zealand",
+            "code": "NZ",
+            "flag": "🇳🇿",
+            "regionalNumber": "+64",
+            "minPhoneLength": "3",
+            "maxPhoneLength": "10"
+        },
+        {
+            "name": "Poland",
+            "code": "PL",
+            "flag": "🇵🇱",
+            "regionalNumber": "+48",
+            "minPhoneLength": "6",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "Cyprus",
+            "code": "CY",
+            "flag": "🇨🇾",
+            "regionalNumber": "+357",
+            "minPhoneLength": "8",
+            "maxPhoneLength": "11"
+        },
+        {
+            "name": "Syria",
+            "code": "SY",
+            "flag": "🇸🇾",
+            "regionalNumber": "+963",
+            "minPhoneLength": "8",
+            "maxPhoneLength": "10"
+        },
+        {
+            "name": "Albania",
+            "code": "AL",
+            "flag": "🇦🇱",
+            "regionalNumber": "+355",
+            "minPhoneLength": "9",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "Algeria",
+            "code": "DZ",
+            "flag": "🇩🇿",
+            "regionalNumber": "+213",
+            "minPhoneLength": "9",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "Azerbaijan",
+            "code": "AZ",
+            "flag": "🇦🇿",
+            "regionalNumber": "+994",
+            "minPhoneLength": "9",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "Belarus",
+            "code": "BY",
+            "flag": "🇧🇾",
+            "regionalNumber": "+375",
+            "minPhoneLength": "9",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "Bolivia",
+            "code": "BO",
+            "flag": "🇧🇴",
+            "regionalNumber": "+591",
+            "minPhoneLength": "8",
+            "maxPhoneLength": "8"
+        },
+        {
+            "name": "Bosnia and Herzegovina",
+            "code": "BA",
+            "flag": "🇧🇦",
+            "regionalNumber": "+387",
+            "minPhoneLength": "8",
+            "maxPhoneLength": "8"
+        },
+        {
+            "name": "Bulgaria",
+            "code": "BG",
+            "flag": "🇧🇬",
+            "regionalNumber": "+359",
+            "minPhoneLength": "7",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "Chile",
+            "code": "CL",
+            "flag": "🇨🇱",
+            "regionalNumber": "+56",
+            "minPhoneLength": "9",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "Colombia",
+            "code": "CO",
+            "flag": "🇨🇴",
+            "regionalNumber": "+57",
+            "minPhoneLength": "10",
+            "maxPhoneLength": "10"
+        },
+        {
+            "name": "Côte d'Ivoire",
+            "code": "CI",
+            "flag": "🇨🇮",
+            "regionalNumber": "+225",
+            "minPhoneLength": "8",
+            "maxPhoneLength": "8"
+        },
+        {
+            "name": "Cuba",
+            "code": "CU",
+            "flag": "🇨🇺",
+            "regionalNumber": "+53",
+            "minPhoneLength": "8",
+            "maxPhoneLength": "8"
+        },
+        {
+            "name": "Czech Republic",
+            "code": "CZ",
+            "flag": "🇨🇿",
+            "regionalNumber": "+420",
+            "minPhoneLength": "9",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "El Salvador",
+            "code": "SV",
+            "flag": "🇸🇻",
+            "regionalNumber": "+503",
+            "minPhoneLength": "8",
+            "maxPhoneLength": "8"
+        },
+        {
+            "name": "Estonia",
+            "code": "EE",
+            "flag": "🇪🇪",
+            "regionalNumber": "+372",
+            "minPhoneLength": "7",
+            "maxPhoneLength": "7"
+        },
+        {
+            "name": "Iceland",
+            "code": "IS",
+            "flag": "🇮🇸",
+            "regionalNumber": "+354",
+            "minPhoneLength": "7",
+            "maxPhoneLength": "7"
+        },
+        {
+            "name": "Indonesia",
+            "code": "ID",
+            "flag": "🇮🇩",
+            "regionalNumber": "+62",
+            "minPhoneLength": "9",
+            "maxPhoneLength": "12"
+        },
+        {
+            "name": "Ireland",
+            "code": "IE",
+            "flag": "🇮🇪",
+            "regionalNumber": "+353",
+            "minPhoneLength": "9",
+            "maxPhoneLength": "10"
+        },
+        {
+            "name": "Italy",
+            "code": "IT",
+            "flag": "🇮🇹",
+            "regionalNumber": "+39",
+            "minPhoneLength": "10",
+            "maxPhoneLength": "10"
+        },
+        {
+            "name": "Japan",
+            "code": "JP",
+            "flag": "🇯🇵",
+            "regionalNumber": "+81",
+            "minPhoneLength": "9",
+            "maxPhoneLength": "10"
+        },
+        {
+            "name": "South Korea",
+            "code": "KR",
+            "flag": "🇰🇷",
+            "regionalNumber": "+82",
+            "minPhoneLength": "9",
+            "maxPhoneLength": "11"
+        },
+        {
+            "name": "Maldives",
+            "code": "MV",
+            "flag": "🇲🇻",
+            "regionalNumber": "+960",
+            "minPhoneLength": "7",
+            "maxPhoneLength": "7"
+        },
+        {
+            "name": "Mexico",
+            "code": "MX",
+            "flag": "🇲🇽",
+            "regionalNumber": "+52",
+            "minPhoneLength": "10",
+            "maxPhoneLength": "10"
+        },
+        {
+            "name": "Montenegro",
+            "code": "ME",
+            "flag": "🇲🇪",
+            "regionalNumber": "+382",
+            "minPhoneLength": "8",
+            "maxPhoneLength": "8"
+        },
+        {
+            "name": "Philippines",
+            "code": "PH",
+            "flag": "🇵🇭",
+            "regionalNumber": "+63",
+            "minPhoneLength": "10",
+            "maxPhoneLength": "10"
+        },
+        {
+            "name": "Russia",
+            "code": "RU",
+            "flag": "🇷🇺",
+            "regionalNumber": "+7",
+            "minPhoneLength": "10",
+            "maxPhoneLength": "10"
+        },
+        {
+            "name": "Rwanda",
+            "code": "RW",
+            "flag": "🇷🇼",
+            "regionalNumber": "+250",
+            "minPhoneLength": "9",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "Singapore",
+            "code": "SG",
+            "flag": "🇸🇬",
+            "regionalNumber": "+65",
+            "minPhoneLength": "8",
+            "maxPhoneLength": "8"
+        },
+        {
+            "name": "Slovakia",
+            "code": "SK",
+            "flag": "🇸🇰",
+            "regionalNumber": "+421",
+            "minPhoneLength": "9",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "Thailand",
+            "code": "TH",
+            "flag": "🇹🇭",
+            "regionalNumber": "+66",
+            "minPhoneLength": "9",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "Ukraine",
+            "code": "UA",
+            "flag": "🇺🇦",
+            "regionalNumber": "+380",
+            "minPhoneLength": "9",
+            "maxPhoneLength": "9"
+        },
+        {
+            "name": "Venezuela",
+            "code": "VE",
+            "flag": "🇻🇪",
+            "regionalNumber": "+58",
+            "minPhoneLength": "10",
+            "maxPhoneLength": "10"
+        }
+    ]
+}

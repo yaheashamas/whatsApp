@@ -82,10 +82,8 @@ class CustomTextFormField extends StatelessWidget {
             minHeight: 30,
             minWidth: 30,
           ),
-          // errorText:
-              // outsideValidation ? errorText : errorText?.t(context),
+          errorText: errorText,
           errorMaxLines: 2,
-          counterText: "",
         ),
       ),
     );

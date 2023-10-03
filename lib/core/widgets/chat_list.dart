@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whats_app/core/constants/const_info.dart';
-import 'package:whats_app/widgets/my_message_card.dart';
-import 'package:whats_app/widgets/sender_message_card.dart';
+import 'package:whats_app/core/widgets/my_message_card.dart';
+import 'package:whats_app/core/widgets/sender_message_card.dart';
 
 class ChatList extends StatelessWidget {
   const ChatList({Key? key}) : super(key: key);

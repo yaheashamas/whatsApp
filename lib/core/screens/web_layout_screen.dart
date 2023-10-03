@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:whats_app/core/constants/const_color.dart';
-import 'package:whats_app/widgets/chat_list.dart';
-import 'package:whats_app/widgets/web_chat_appbar.dart';
-import 'package:whats_app/widgets/contacts_list.dart';
-import 'package:whats_app/widgets/web_profile_bar.dart';
-import 'package:whats_app/widgets/web_search_bar.dart';
+import 'package:whats_app/core/widgets/chat_list.dart';
+import 'package:whats_app/core/widgets/web_chat_appbar.dart';
+import 'package:whats_app/core/widgets/contacts_list.dart';
+import 'package:whats_app/core/widgets/web_profile_bar.dart';
+import 'package:whats_app/core/widgets/web_search_bar.dart';
 
 class WebLayoutScreen extends StatelessWidget {
   const WebLayoutScreen({Key? key}) : super(key: key);

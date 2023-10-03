@@ -8,7 +8,7 @@ class Routes {
   static Map<String, WidgetBuilder> getRoutes(RouteSettings settings) => {
         RouteList.initial: (context) => const LandingScreen(),
         //auth
-        RouteList.login: (context) => const LoginScreen(),
+        RouteList.login: (context) =>  LoginScreen(),
         //otp auth
         RouteList.otp: (context) => OtpScreen(
               verficationId: settings.arguments as String,

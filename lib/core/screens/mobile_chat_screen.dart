@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whats_app/core/constants/const_color.dart';
 import 'package:whats_app/core/constants/const_info.dart';
-import 'package:whats_app/widgets/chat_list.dart';
+import 'package:whats_app/core/widgets/chat_list.dart';
 
 class MobileChatScreen extends StatelessWidget {
   const MobileChatScreen({Key? key}) : super(key: key);

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:whats_app/core/constants/const_data.dart';
 import 'package:whats_app/core/models/code_phone_number_model.dart';
 import 'package:whats_app/core/themes/theme_dark/theme_dark.dart';
 
 class SearchCountries extends SearchDelegate<CodePhoneNumberModel?> {
+  List<CodePhoneNumberModel> allCountries;
+  SearchCountries(this.allCountries);
+
   @override
   ThemeData appBarTheme(BuildContext context) {
     return darkTheme();

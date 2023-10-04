@@ -75,6 +75,7 @@ class CustomTextFormField extends StatelessWidget {
         maxLength: maxLength,
         onEditingComplete: onEditingComplete,
         decoration: InputDecoration(
+          hintText: label,
           prefix: prefix,
           prefixIcon: prefixIcon,
           suffixIcon: existsSuffix ? suffixIcon : null,

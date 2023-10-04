@@ -8,4 +8,16 @@ class AuthController {
   signInWithPhone(BuildContext context, String phoneNumber) async {
     await authRepository.signInWithPhone(context, phoneNumber);
   }
+
+  verficationOTP(
+    BuildContext context,
+    String verificationId,
+    String smsCode,
+  ) async {
+    await authRepository.otpPhoneNumber(
+      context: context,
+      verificationId: verificationId,
+      smsCode: smsCode,
+    );
+  }
 }

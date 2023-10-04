@@ -63,6 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 controller: codeController,
                                 readOnly: true,
                                 label: "Phone Number",
+                                textInputType: TextInputType.number,
                                 prefixIcon: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,

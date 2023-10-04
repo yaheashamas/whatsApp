@@ -20,10 +20,7 @@ class AuthRepository {
           await firebaseAuth.signInWithCredential(credential);
         },
         verificationFailed: (error) {
-          return showSnakBar(
-            context: context,
-            content: error.message!
-          );
+          return showSnakBar(context: context, content: error.message!);
         },
         codeSent: (verificationId, forceResendingToken) async {
           Navigator.pushNamed(
@@ -33,6 +30,30 @@ class AuthRepository {
           );
         },
         codeAutoRetrievalTimeout: (verificationId) {},
+      );
+    } on FirebaseAuthException catch (e) {
+      return showSnakBar(
+        context: context,
+        content: e.message!,
+      );
+    }
+  }
+
+  Future<void> otpPhoneNumber({
+    required BuildContext context,
+    required String verificationId,
+    required String smsCode,
+  }) async {
+    try {
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verificationId,
+        smsCode: smsCode,
+      );
+      await firebaseAuth.signInWithCredential(credential);
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        RouteList.infoUser,
+        (route) => false,
       );
     } on FirebaseAuthException catch (e) {
       return showSnakBar(

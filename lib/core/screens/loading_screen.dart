@@ -11,6 +11,8 @@ class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      fit: StackFit.expand,
+      alignment: Alignment.center,
       children: [
         child,
         BlocBuilder<LoadingCubit, bool>(

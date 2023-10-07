@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>666826650748-50f16h24s6qaijmq95krrj3rb1mai6vi.apps.googleusercontent.com</string>
+	<string>461211317713-nih4nvudu5trplrfssuv4f7qasgjbme8.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.666826650748-50f16h24s6qaijmq95krrj3rb1mai6vi</string>
+	<string>com.googleusercontent.apps.461211317713-nih4nvudu5trplrfssuv4f7qasgjbme8</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>666826650748-g0hui1ufb9t35khis5sg2pc0dmmud1q8.apps.googleusercontent.com</string>
+	<string>461211317713-148q5ggrfndpesk3ffpjr4jjfv7eg0ra.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBjphoOMcqlv_YRAVUNXFD9Hv_N0DSTd48</string>
+	<string>AIzaSyCSZHyPurrGRodXqx2sqxTFbf0CqeTZ5pQ</string>
 	<key>GCM_SENDER_ID</key>
-	<string>666826650748</string>
+	<string>461211317713</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.whatsApp</string>
 	<key>PROJECT_ID</key>
-	<string>whatsapp-b5670</string>
+	<string>whats-app-b992d</string>
 	<key>STORAGE_BUCKET</key>
-	<string>whatsapp-b5670.appspot.com</string>
+	<string>whats-app-b992d.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:666826650748:ios:81794dc5855855d502c5f9</string>
+	<string>1:461211317713:ios:c9ae719f534a4281f25cf0</string>
 </dict>
 </plist>

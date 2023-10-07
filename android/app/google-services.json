@@ -1,37 +1,45 @@
 {
   "project_info": {
-    "project_number": "666826650748",
-    "project_id": "whatsapp-b5670",
-    "storage_bucket": "whatsapp-b5670.appspot.com"
+    "project_number": "461211317713",
+    "project_id": "whats-app-b992d",
+    "storage_bucket": "whats-app-b992d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:666826650748:android:0049e7b1e9dd2c3902c5f9",
+        "mobilesdk_app_id": "1:461211317713:android:7152bf8d7cbb8e3cf25cf0",
         "android_client_info": {
-          "package_name": "com.example.whats_app"
+          "package_name": "com.whatsApp.whatsApp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "666826650748-afc417ghir8eutcvngskjqqt46n04d8m.apps.googleusercontent.com",
+          "client_id": "461211317713-148q5ggrfndpesk3ffpjr4jjfv7eg0ra.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.whatsApp.whatsApp",
+            "certificate_hash": "313c5facd0f3b303e701a13d3c7f9f24d582a752"
+          }
+        },
+        {
+          "client_id": "461211317713-vmts3qe0s68en2hgnn92m09mmb1aqbh9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyChDwDnrNBG8CbmsSNd6SefCulxUVYWghg"
+          "current_key": "AIzaSyD1iQlHIGIGXocubLaAvkJdPlsZQzRBjTE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "666826650748-afc417ghir8eutcvngskjqqt46n04d8m.apps.googleusercontent.com",
+              "client_id": "461211317713-vmts3qe0s68en2hgnn92m09mmb1aqbh9.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "666826650748-50f16h24s6qaijmq95krrj3rb1mai6vi.apps.googleusercontent.com",
+              "client_id": "461211317713-nih4nvudu5trplrfssuv4f7qasgjbme8.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.example.whatsApp"

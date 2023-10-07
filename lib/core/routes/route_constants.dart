@@ -9,4 +9,5 @@ class RouteList {
   static const String register = '/register';
   static const String otp = '/otp';
   static const String infoUser = '/infoUser';
+  static const String home = '/home';
 }

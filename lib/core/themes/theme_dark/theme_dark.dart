@@ -133,19 +133,19 @@ ThemeData darkTheme() {
         fontSize: 15,
       ),
       disabledBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: ThemeDarkColors.grayDark, width: 3),
+        borderSide: BorderSide(color: ThemeDarkColors.grayDark, width: 1),
       ),
       enabledBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: ThemeDarkColors.grayDark, width: 3),
+        borderSide: BorderSide(color: ThemeDarkColors.grayDark, width: 1),
       ),
       focusedBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: ThemeDarkColors.grayDark, width: 3),
+        borderSide: BorderSide(color: ThemeDarkColors.grayDark, width: 1),
       ),
       errorBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: ThemeDarkColors.errorDark, width: 3),
+        borderSide: BorderSide(color: ThemeDarkColors.errorDark, width: 1),
       ),
       focusedErrorBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: ThemeDarkColors.errorDark, width: 3),
+        borderSide: BorderSide(color: ThemeDarkColors.errorDark, width: 1),
       ),
     ),
     //elevation button

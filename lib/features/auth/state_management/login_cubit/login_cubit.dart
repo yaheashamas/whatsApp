@@ -41,9 +41,14 @@ class LoginCubit extends Cubit<LoginState> {
 
   login(BuildContext context) async {
     loadingCubit.show();
-    await authController.signInWithPhone(
-        context, codeController.text + state.phone.value);
-    loadingCubit.hide();
+    await authController
+        .signInWithPhone(
+      context,
+      codeController.text + state.phone.value,
+    )
+        .then((value) {
+      loadingCubit.hide();
+    });
   }
 
   chooseCountry(CodePhoneNumberModel chooseCountry) {

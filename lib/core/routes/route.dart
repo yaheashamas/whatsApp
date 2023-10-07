@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:whats_app/core/routes/route_constants.dart';
+import 'package:whats_app/core/screens/mobile_layout_screen.dart';
 import 'package:whats_app/features/auth/screens/info_user_screen.dart';
 import 'package:whats_app/features/auth/screens/login_screen.dart';
 import 'package:whats_app/features/auth/screens/otp_screen.dart';
@@ -16,5 +17,7 @@ class Routes {
             ),
         //user info
         RouteList.infoUser: (context) => const InfoUserScreen(),
+        //home
+        RouteList.home: (context) => const MobileLayoutScreen(),
       };
 }

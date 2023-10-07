@@ -126,19 +126,19 @@ ThemeData lightTheme() {
         fontSize: 15,
       ),
       disabledBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: ThemeLightColors.grayLight, width: 3),
+        borderSide: BorderSide(color: ThemeLightColors.grayLight, width: 1),
       ),
       enabledBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: ThemeLightColors.grayLight, width: 3),
+        borderSide: BorderSide(color: ThemeLightColors.grayLight, width: 1),
       ),
       focusedBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: ThemeLightColors.grayLight, width: 3),
+        borderSide: BorderSide(color: ThemeLightColors.grayLight, width: 1),
       ),
       errorBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: ThemeLightColors.errorLight, width: 3),
+        borderSide: BorderSide(color: ThemeLightColors.errorLight, width: 1),
       ),
       focusedErrorBorder: UnderlineInputBorder(
-        borderSide: BorderSide(color: ThemeLightColors.errorLight, width: 3),
+        borderSide: BorderSide(color: ThemeLightColors.errorLight, width: 1),
       ),
     ),
     //elevation button

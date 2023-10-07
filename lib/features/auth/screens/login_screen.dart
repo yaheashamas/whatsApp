@@ -4,7 +4,7 @@ import 'package:whats_app/core/global/widgets/text_form_field/custom_text_form_f
 import 'package:whats_app/core/models/code_phone_number_model.dart';
 import 'package:whats_app/di.dart';
 import 'package:whats_app/features/auth/screens/search_countries.dart';
-import 'package:whats_app/features/auth/state_management/cubit/login_cubit.dart';
+import 'package:whats_app/features/auth/state_management/login_cubit/login_cubit.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

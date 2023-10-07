@@ -8,33 +8,50 @@ import 'package:whats_app/core/screens/loading_screen.dart';
 import 'package:whats_app/core/state_management/loading_cubit/loading_cubit.dart';
 import 'package:whats_app/core/themes/theme_dark/theme_dark.dart';
 import 'package:whats_app/di.dart';
-import 'package:whats_app/features/landing/landing_screen.dart';
 import 'package:whats_app/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await configureInjection();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await configureInjection();
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late LoadingCubit loadingCubit;
+  @override
+  void initState() {
+    super.initState();
+    loadingCubit = getIt.get<LoadingCubit>();
+  }
+
+  @override
+  void dispose() {
+    loadingCubit.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt.get<LoadingCubit>(),
+      create: (context) => loadingCubit,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Whatsapp UI',
         theme: darkTheme(),
-        home: const LoadingScreen(
-          child: LandingScreen(),
-        ),
         initialRoute: RouteList.initial,
+        builder: (context, child) {
+          return LoadingScreen(child: child!);
+        },
         onGenerateRoute: (settings) {
           final routes = Routes.getRoutes(settings);
           final WidgetBuilder? builder = routes[settings.name];

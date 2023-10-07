@@ -10,34 +10,50 @@ class LoadingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.expand,
-      alignment: Alignment.center,
-      children: [
-        child,
-        BlocBuilder<LoadingCubit, bool>(
-          builder: (context, state) {
-            return state
-                ? AbsorbPointer(
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(
-                        sigmaX: 2.0,
-                        sigmaY: 2.0,
-                      ),
-                      child: Center(
-                        child: Container(
-                          height: 100,
-                          width: 100,
-                          padding: const EdgeInsets.all(30),
-                          child: const CircularProgressIndicator(),
+    return BlocBuilder<LoadingCubit, bool>(
+      builder: (context, shouldShow) {
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: Stack(
+            alignment: Alignment.center,
+            fit: StackFit.expand,
+            children: [
+              child,
+              if (shouldShow)
+                AbsorbPointer(
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(
+                      sigmaX: 2.0,
+                      sigmaY: 2.0,
+                    ),
+                    child: Center(
+                      child: Container(
+                        height: 100,
+                        width: 100,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).scaffoldBackgroundColor,
+                          borderRadius: BorderRadius.circular(29),
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 10,
+                              spreadRadius: 1,
+                              offset: const Offset(1, 1),
+                              color: Theme.of(context)
+                                  .scaffoldBackgroundColor
+                                  .withOpacity(0.1),
+                            ),
+                          ],
                         ),
+                        padding: const EdgeInsets.all(30),
+                        child: const CircularProgressIndicator(),
                       ),
                     ),
-                  )
-                : Container();
-          },
-        )
-      ],
+                  ),
+                )
+            ],
+          ),
+        );
+      },
     );
   }
 }

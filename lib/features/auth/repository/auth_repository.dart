@@ -1,15 +1,20 @@
+import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/widgets.dart';
+import 'package:whats_app/core/common/firebase_storage_repository.dart';
+import 'package:whats_app/core/models/user_model.dart';
 import 'package:whats_app/core/routes/route_constants.dart';
 import 'package:whats_app/core/utils/snak_bar.dart';
 
 class AuthRepository {
   final FirebaseAuth firebaseAuth;
-  final FirebaseStorage firebaseStorage;
+  final FirebaseFirestore firebaseStore;
+  final FireBaseStorageRepository fireBaseStorageRepository;
   AuthRepository(
     this.firebaseAuth,
-    this.firebaseStorage,
+    this.firebaseStore,
+    this.fireBaseStorageRepository,
   );
 
   Future<void> signInWithPhone(BuildContext context, String phoneNumber) async {
@@ -61,5 +66,35 @@ class AuthRepository {
         content: e.message!,
       );
     }
+  }
+
+  storeUserInFirebase({
+    required BuildContext context,
+    required String name,
+    required File? image,
+  }) async {
+    String uid = firebaseAuth.currentUser!.uid;
+    String imageURL = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+
+    if (image != null) {
+      imageURL = await fireBaseStorageRepository.storeFileToFireBase(
+        "ProfilePic/$uid",
+        image,
+      );
+    }
+    UserModel userModel = UserModel(
+      name: name,
+      uid: uid,
+      profilePic: imageURL,
+      isOnline: true,
+      phoneNumber: uid,
+      groupId: [],
+    );
+    await firebaseStore.collection('users').doc(uid).set(userModel.toMap());
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      RouteList.home,
+      (route) => false,
+    );
   }
 }

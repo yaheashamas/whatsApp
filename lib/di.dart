@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:whats_app/core/common/firebase_storage_repository.dart';
 import 'package:whats_app/core/state_management/loading_cubit/loading_cubit.dart';
+import 'package:whats_app/core/state_management/uid_hydrated/uid_hydrated.dart';
 import 'package:whats_app/features/auth/controller/auth_controller.dart';
 import 'package:whats_app/features/auth/repository/auth_repository.dart';
 import 'package:whats_app/features/auth/state_management/info_user_cubit/info_user_cubit.dart';
@@ -24,6 +25,7 @@ Future<void> configureInjection() async {
 
 mainGetIt() async {
   getIt.registerSingleton(LoadingCubit());
+  getIt.registerSingleton(UidCubit());
 }
 
 fireBaseGetIt() async {
@@ -43,6 +45,7 @@ loginGetIt() async {
   getIt.registerFactory<TextEditingController>(() => TextEditingController());
   //repository
   getIt.registerFactory<AuthRepository>(() => AuthRepository(
+        getIt(),
         getIt(),
         getIt(),
         getIt(),

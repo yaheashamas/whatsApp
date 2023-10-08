@@ -17,7 +17,10 @@ class UserCubit extends Cubit<UserState> {
           userModel: user,
         ));
       } else {
-        emit(state.copyWith(stateWidget: StateWidget.error));
+        emit(state.copyWith(
+          stateWidget: StateWidget.error,
+          userModel: null,
+        ));
       }
     });
   }

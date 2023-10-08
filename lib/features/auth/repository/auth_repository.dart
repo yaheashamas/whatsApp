@@ -5,27 +5,31 @@ import 'package:flutter/widgets.dart';
 import 'package:whats_app/core/common/firebase_storage_repository.dart';
 import 'package:whats_app/core/models/user_model.dart';
 import 'package:whats_app/core/routes/route_constants.dart';
+import 'package:whats_app/core/state_management/uid_hydrated/uid_hydrated.dart';
 import 'package:whats_app/core/utils/snak_bar.dart';
 
 class AuthRepository {
   final FirebaseAuth firebaseAuth;
   final FirebaseFirestore firebaseStore;
   final FireBaseStorageRepository fireBaseStorageRepository;
+  final UidCubit uidCubit;
 
   AuthRepository(
     this.firebaseAuth,
     this.firebaseStore,
     this.fireBaseStorageRepository,
+    this.uidCubit,
   );
 
   Future<UserModel?> getCurrenctUser() async {
-    late UserModel user;
-    var result = await firebaseStore
-        .collection('users')
-        .doc(firebaseAuth.currentUser!.uid)
-        .get();
-    if (result.data() != null) user = UserModel.fromMap(result.data()!);
-    return user;
+    UserModel? user;
+    var result =
+        await firebaseStore.collection('users').doc(uidCubit.state).get();
+    if (result.data() != null) {
+      return user = UserModel.fromMap(result.data()!);
+    } else {
+      return user;
+    }
   }
 
   Future<void> signInWithPhone(BuildContext context, String phoneNumber) async {
@@ -101,6 +105,7 @@ class AuthRepository {
       phoneNumber: uid,
       groupId: [],
     );
+    uidCubit.addUID(uid);
     await firebaseStore.collection('users').doc(uid).set(userModel.toMap());
     Navigator.pushNamedAndRemoveUntil(
       context,

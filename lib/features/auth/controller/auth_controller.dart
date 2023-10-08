@@ -1,11 +1,15 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:whats_app/core/models/user_model.dart';
 import 'package:whats_app/features/auth/repository/auth_repository.dart';
 
 class AuthController {
   final AuthRepository authRepository;
   AuthController(this.authRepository);
+
+  Future<UserModel?> getCurrenctUser() async {
+    return await authRepository.getCurrenctUser();
+  }
 
   Future signInWithPhone(BuildContext context, String phoneNumber) async {
     await authRepository.signInWithPhone(context, phoneNumber);

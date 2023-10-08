@@ -8,6 +8,7 @@ import 'package:whats_app/core/screens/loading_screen.dart';
 import 'package:whats_app/core/state_management/loading_cubit/loading_cubit.dart';
 import 'package:whats_app/core/themes/theme_dark/theme_dark.dart';
 import 'package:whats_app/di.dart';
+import 'package:whats_app/features/landing/state_management/user_cubit/user_cubit.dart';
 import 'package:whats_app/firebase_options.dart';
 
 void main() async {
@@ -28,22 +29,29 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late LoadingCubit loadingCubit;
+  late UserCubit userCubit;
   @override
   void initState() {
     super.initState();
     loadingCubit = getIt.get<LoadingCubit>();
+    userCubit = getIt.get<UserCubit>();
+    userCubit.getUser();
   }
 
   @override
   void dispose() {
     loadingCubit.close();
+    userCubit.close();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => loadingCubit,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => loadingCubit),
+        BlocProvider(create: (context) => userCubit),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Whatsapp UI',

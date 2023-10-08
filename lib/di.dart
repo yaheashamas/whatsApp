@@ -9,6 +9,7 @@ import 'package:whats_app/features/auth/controller/auth_controller.dart';
 import 'package:whats_app/features/auth/repository/auth_repository.dart';
 import 'package:whats_app/features/auth/state_management/info_user_cubit/info_user_cubit.dart';
 import 'package:whats_app/features/auth/state_management/login_cubit/login_cubit.dart';
+import 'package:whats_app/features/landing/state_management/user_cubit/user_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -17,6 +18,7 @@ Future<void> configureInjection() async {
   await fireBaseGetIt();
   await commonClassesGetIt();
   await loginGetIt();
+  await userCubit();
   await infoUser();
 }
 
@@ -52,6 +54,10 @@ loginGetIt() async {
       .registerFactory<LoginCubit>(() => LoginCubit(getIt(), getIt(), getIt()));
 }
 
+userCubit() async {
+  getIt.registerSingleton<UserCubit>(UserCubit(getIt()));
+}
+
 infoUser() async {
-  getIt.registerFactory<InfoUserCubit>(() => InfoUserCubit(getIt(),getIt()));
+  getIt.registerFactory<InfoUserCubit>(() => InfoUserCubit(getIt(), getIt()));
 }

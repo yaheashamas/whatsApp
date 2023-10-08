@@ -11,11 +11,22 @@ class AuthRepository {
   final FirebaseAuth firebaseAuth;
   final FirebaseFirestore firebaseStore;
   final FireBaseStorageRepository fireBaseStorageRepository;
+
   AuthRepository(
     this.firebaseAuth,
     this.firebaseStore,
     this.fireBaseStorageRepository,
   );
+
+  Future<UserModel?> getCurrenctUser() async {
+    late UserModel user;
+    var result = await firebaseStore
+        .collection('users')
+        .doc(firebaseAuth.currentUser!.uid)
+        .get();
+    if (result.data() != null) user = UserModel.fromMap(result.data()!);
+    return user;
+  }
 
   Future<void> signInWithPhone(BuildContext context, String phoneNumber) async {
     try {

@@ -4,11 +4,13 @@ import 'package:whats_app/core/screens/mobile_layout_screen.dart';
 import 'package:whats_app/features/auth/screens/info_user_screen.dart';
 import 'package:whats_app/features/auth/screens/login_screen.dart';
 import 'package:whats_app/features/auth/screens/otp_screen.dart';
+import 'package:whats_app/features/inial/inial_screen.dart';
 import 'package:whats_app/features/landing/landing_screen.dart';
 
 class Routes {
   static Map<String, WidgetBuilder> getRoutes(RouteSettings settings) => {
-        RouteList.initial: (context) => const LandingScreen(),
+        RouteList.initial: (context) => const InialScreen(),
+        RouteList.landing: (context) => const LandingScreen(),
         //auth
         RouteList.login: (context) => const LoginScreen(),
         //otp auth

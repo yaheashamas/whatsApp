@@ -18,7 +18,7 @@ class SelectContactRepository {
       if (user.phoneNumber.removeAllCaracter ==
           contact.phones[0].number.removeAllCaracter) {
         isExsist = true;
-        Navigator.pushNamed(context, RouteList.chat);
+        Navigator.pushNamed(context, RouteList.chat,arguments:user);
         break;
       }
     }

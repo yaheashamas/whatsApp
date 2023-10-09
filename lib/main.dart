@@ -85,10 +85,6 @@ class _MyAppState extends State<MyApp> {
             settings: settings,
           );
         },
-        // const ResponsiveLayout(
-        //   mobileScreenLayout: MobileLayoutScreen(),
-        //   webScreenLayout: WebLayoutScreen(),
-        // ),
       ),
     );
   }

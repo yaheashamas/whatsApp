@@ -102,7 +102,7 @@ class AuthRepository {
       uid: uid,
       profilePic: imageURL,
       isOnline: true,
-      phoneNumber: uid,
+      phoneNumber: firebaseAuth.currentUser!.phoneNumber!,
       groupId: [],
     );
     uidCubit.addUID(uid);

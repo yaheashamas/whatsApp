@@ -11,4 +11,5 @@ class RouteList {
   static const String otp = '/otp';
   static const String infoUser = '/infoUser';
   static const String home = '/home';
+  static const String chat = '/chat';
 }

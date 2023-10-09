@@ -11,6 +11,9 @@ import 'package:whats_app/features/auth/repository/auth_repository.dart';
 import 'package:whats_app/features/auth/state_management/info_user_cubit/info_user_cubit.dart';
 import 'package:whats_app/features/auth/state_management/login_cubit/login_cubit.dart';
 import 'package:whats_app/features/landing/state_management/user_cubit/user_cubit.dart';
+import 'package:whats_app/features/select_contact/controller/select_contact_controller.dart';
+import 'package:whats_app/features/select_contact/repository/select_contact_repository.dart';
+import 'package:whats_app/features/select_contact/state_management/select_contact_cubit/select_contact_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -21,6 +24,7 @@ Future<void> configureInjection() async {
   await loginGetIt();
   await userCubit();
   await infoUser();
+  await selectContactCubit();
 }
 
 mainGetIt() async {
@@ -63,4 +67,17 @@ userCubit() async {
 
 infoUser() async {
   getIt.registerFactory<InfoUserCubit>(() => InfoUserCubit(getIt(), getIt()));
+}
+
+// search and git all users
+selectContactCubit() async {
+  getIt.registerSingleton<SelectContactRepository>(SelectContactRepository(
+    getIt(),
+  ));
+  getIt.registerSingleton<SelectContactController>(SelectContactController(
+    getIt(),
+  ));
+  getIt.registerFactory<SelectContactCubit>(() => SelectContactCubit(
+        getIt(),
+      ));
 }

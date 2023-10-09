@@ -38,6 +38,7 @@ dependencies:
 
   # permisstion
   permission_handler: ^11.0.1
+  flutter_contacts: ^1.1.7+1
 
 dev_dependencies:
   flutter_test:

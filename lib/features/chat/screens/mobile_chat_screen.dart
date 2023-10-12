@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:whats_app/core/constants/const_color.dart';
-import 'package:whats_app/core/models/user_model.dart';
-import 'package:whats_app/core/widgets/chat_list.dart';
+import 'package:whats_app/features/chat/screens/chat_list.dart';
 import 'package:whats_app/di.dart';
 import 'package:whats_app/features/auth/state_management/login_cubit/login_cubit.dart';
 import 'package:whats_app/features/chat/state_management/chat_cubit/chat_cubit.dart';
 
 class MobileChatScreen extends StatefulWidget {
-  final UserModel user;
+  final String reciverUid;
   const MobileChatScreen({
     Key? key,
-    required this.user,
+    required this.reciverUid,
   }) : super(key: key);
 
   @override
@@ -23,7 +22,7 @@ class _MobileChatScreenState extends State<MobileChatScreen> {
   @override
   void initState() {
     super.initState();
-    chatCubit = getIt.get<ChatCubit>(param1: widget.user.uid);
+    chatCubit = getIt.get<ChatCubit>(param1: widget.reciverUid);
   }
 
   @override
@@ -47,7 +46,7 @@ class _MobileChatScreenState extends State<MobileChatScreen> {
               return AppBar(
                 backgroundColor: appBarColor,
                 title: (() {
-                  switch (state.stateWidget) {
+                  switch (state.stateWidgetUser) {
                     case StateWidget.loading:
                       return const Center(
                         child: CircularProgressIndicator(),
@@ -121,20 +120,58 @@ class _MobileChatScreenState extends State<MobileChatScreen> {
         body: Column(
           children: [
             const Expanded(child: ChatList()),
-            SafeArea(
+            CustomInputWithRequordButton(
+              chatCubit: chatCubit,
+              reciverUid: widget.reciverUid,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CustomInputWithRequordButton extends StatefulWidget {
+  final ChatCubit chatCubit;
+  final String reciverUid;
+  const CustomInputWithRequordButton({
+    super.key,
+    required this.chatCubit,
+    required this.reciverUid,
+  });
+
+  @override
+  State<CustomInputWithRequordButton> createState() =>
+      _CustomInputWithRequordButtonState();
+}
+
+class _CustomInputWithRequordButtonState
+    extends State<CustomInputWithRequordButton> {
+  TextEditingController textEditingController = TextEditingController();
+  bool micOrMessage = true;
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Row(
+        children: [
+          Expanded(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
               child: TextFormField(
-                decoration: InputDecoration(
+                controller: textEditingController,
+                autofocus: true,
+                decoration: const InputDecoration(
+                  disabledBorder: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
                   filled: true,
                   fillColor: mobileChatBoxColor,
-                  prefixIcon: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Icon(
-                      Icons.emoji_emotions,
-                      color: Colors.grey,
-                    ),
+                  prefixIcon: Icon(
+                    Icons.emoji_emotions,
+                    color: Colors.grey,
                   ),
-                  suffixIcon: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  suffixIcon: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
@@ -147,27 +184,43 @@ class _MobileChatScreenState extends State<MobileChatScreen> {
                           Icons.attach_file,
                           color: Colors.grey,
                         ),
-                        Icon(
-                          Icons.money,
-                          color: Colors.grey,
-                        ),
                       ],
                     ),
                   ),
                   hintText: 'Type a message!',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                    borderSide: const BorderSide(
-                      width: 0,
-                      style: BorderStyle.none,
-                    ),
-                  ),
-                  contentPadding: const EdgeInsets.all(10),
                 ),
+                onChanged: (value) {
+                  setState(() {
+                    value.isNotEmpty
+                        ? micOrMessage = false
+                        : micOrMessage = true;
+                  });
+                },
               ),
             ),
-          ],
-        ),
+          ),
+          const SizedBox(width: 10),
+          CircleAvatar(
+            backgroundColor: tabColor,
+            child: InkWell(
+              onTap: () {
+                widget.chatCubit.saveMessage(
+                  context: context,
+                  reciverUserId: widget.reciverUid,
+                  message: textEditingController.text.trim(),
+                );
+                setState(() {
+                  textEditingController.text = '';
+                });
+              },
+              child: Icon(
+                micOrMessage ? Icons.mic : Icons.send,
+                color: Colors.white,
+              ),
+            ),
+            minRadius: 22,
+          ),
+        ],
       ),
     );
   }

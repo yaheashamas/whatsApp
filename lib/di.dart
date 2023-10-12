@@ -14,6 +14,7 @@ import 'package:whats_app/features/auth/state_management/info_user_cubit/info_us
 import 'package:whats_app/features/auth/state_management/login_cubit/login_cubit.dart';
 import 'package:whats_app/features/chat/controller/chat_controller.dart';
 import 'package:whats_app/features/chat/repository/chat_repository.dart';
+import 'package:whats_app/features/chat/state_management/chat_contact_cubit/chat_contact_cubit.dart';
 import 'package:whats_app/features/chat/state_management/chat_cubit/chat_cubit.dart';
 import 'package:whats_app/features/landing/state_management/user_cubit/user_cubit.dart';
 import 'package:whats_app/features/select_contact/controller/select_contact_controller.dart';
@@ -31,6 +32,7 @@ Future<void> configureInjection() async {
   await infoUser();
   await selectContactCubit();
   await chatGetIt();
+  await chatContactGetIt();
 }
 
 mainGetIt() async {
@@ -89,7 +91,7 @@ selectContactCubit() async {
 }
 
 chatGetIt() async {
-  getIt.registerSingleton<ChatRepository>(ChatRepository(getIt()));
+  getIt.registerSingleton<ChatRepository>(ChatRepository(getIt(), getIt()));
   getIt.registerSingleton<ChatController>(ChatController(getIt()));
   getIt.registerFactoryParam(
     (param1, param2) => ChatCubit(
@@ -97,4 +99,8 @@ chatGetIt() async {
       uID: param1.toString(),
     ),
   );
+}
+
+chatContactGetIt() async {
+  getIt.registerFactory<ChatContactCubit>(() => ChatContactCubit(getIt()));
 }

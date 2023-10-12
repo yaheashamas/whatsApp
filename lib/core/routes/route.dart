@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:whats_app/core/models/user_model.dart';
 import 'package:whats_app/core/routes/route_constants.dart';
 import 'package:whats_app/features/chat/screens/mobile_chat_screen.dart';
 import 'package:whats_app/core/screens/mobile_layout_screen.dart';
@@ -24,7 +23,7 @@ class Routes {
         //home
         RouteList.home: (context) => const MobileLayoutScreen(),
         RouteList.chat: (context) => MobileChatScreen(
-              user: settings.arguments as UserModel,
+              reciverUid: settings.arguments as String,
             ),
       };
 }

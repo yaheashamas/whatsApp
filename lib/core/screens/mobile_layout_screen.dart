@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:whats_app/core/constants/const_color.dart';
-import 'package:whats_app/core/widgets/contacts_list.dart';
+import 'package:whats_app/features/chat/screens/contacts_list.dart';
 import 'package:whats_app/di.dart';
 import 'package:whats_app/features/select_contact/screens/search_contact.dart';
 import 'package:whats_app/features/select_contact/state_management/select_contact_cubit/select_contact_cubit.dart';

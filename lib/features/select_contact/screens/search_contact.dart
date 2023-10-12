@@ -119,7 +119,6 @@ class SearchContact extends SearchDelegate<Contact?> {
                 context,
                 searchContacts[index],
               );
-              // close(context, searchContacts[index]);
             },
             child: ListTile(
               title: Text(

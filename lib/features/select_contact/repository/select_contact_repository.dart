@@ -6,9 +6,50 @@ import 'package:whats_app/core/models/user_model.dart';
 import 'package:whats_app/core/routes/route_constants.dart';
 import 'package:whats_app/core/utils/snak_bar.dart';
 
+extension Unique<E, Id> on List<E> {
+  List<E> unique([Id Function(E element)? id, bool inplace = true]) {
+    final ids = Set();
+    var list = inplace ? this : List<E>.from(this);
+    list.retainWhere((x) => ids.add(id != null ? id(x) : x as Id));
+    return list;
+  }
+}
+
 class SelectContactRepository {
   final FirebaseFirestore firebaseFirestore;
   SelectContactRepository(this.firebaseFirestore);
+
+  Future<List<UserModel>> getAllContactWhatsApp(
+    List<Contact> contacts,
+  ) async {
+    var users = await firebaseFirestore.collection("users").get();
+    List<UserModel> userHasWhatsUp = [];
+
+    for (var phone in contacts) {
+      var phoneNumber = phone.phones[0].number.removeAllCaracter;
+      for (var user in users.docs) {
+        UserModel userModel = UserModel.fromMap(user.data());
+        if (userModel.phoneNumber.removeAllCaracter == phoneNumber) {
+          userHasWhatsUp.add(userModel);
+        } else {
+          UserModel userModel = UserModel(
+            name: phone.displayName,
+            uid: "",
+            profilePic: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
+            isOnline: false,
+            phoneNumber: phone.phones[0].number.removeAllCaracter,
+            groupId: const [],
+            invite: true,
+          );
+          userHasWhatsUp.add(userModel);
+        }
+      }
+    }
+    userHasWhatsUp.sort(
+      (a, b) => a.invite.toString().compareTo(b.invite.toString()),
+    );
+    return userHasWhatsUp.unique((element) => element.phoneNumber);
+  }
 
   Future<void> selectContact(BuildContext context, Contact contact) async {
     bool isExsist = false;
@@ -18,7 +59,7 @@ class SelectContactRepository {
       if (user.phoneNumber.removeAllCaracter ==
           contact.phones[0].number.removeAllCaracter) {
         isExsist = true;
-        Navigator.pushNamed(context, RouteList.chat,arguments:user.uid);
+        Navigator.pushNamed(context, RouteList.chat, arguments: user.uid);
         break;
       }
     }

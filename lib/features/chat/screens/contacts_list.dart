@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:whats_app/core/constants/const_color.dart';
+import 'package:whats_app/core/extensions/string_extension.dart';
 import 'package:whats_app/di.dart';
 import 'package:whats_app/features/chat/screens/mobile_chat_screen.dart';
 import 'package:whats_app/features/chat/state_management/chat_contact_cubit/chat_contact_cubit.dart';
@@ -71,7 +72,7 @@ class _ContactsListState extends State<ContactsList> {
                           subtitle: Padding(
                             padding: const EdgeInsets.only(top: 6.0),
                             child: Text(
-                              user.lastMessage.toString(),
+                              user.lastMessage.toString().cutText,
                               style: const TextStyle(fontSize: 15),
                             ),
                           ),

@@ -38,11 +38,13 @@ class ChatCubit extends Cubit<ChatState> {
     required String reciverUserId,
     required String message,
   }) async {
-    chatController.saveMessage(
-      context: context,
-      reciverUserId: reciverUserId,
-      message: message,
-    );
+    if (message.isNotEmpty && message.trim() != "") {
+      chatController.saveMessage(
+        context: context,
+        reciverUserId: reciverUserId,
+        message: message.trim(),
+      );
+    }
   }
 
   void updateStateUser(bool status) {

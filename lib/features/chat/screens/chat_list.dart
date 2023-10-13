@@ -3,8 +3,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:whats_app/core/state_management/uid_hydrated/uid_hydrated.dart';
-import 'package:whats_app/core/widgets/my_message_card.dart';
-import 'package:whats_app/core/widgets/sender_message_card.dart';
+import 'package:whats_app/features/chat/widgets/my_message_card.dart';
+import 'package:whats_app/features/chat/widgets/sender_message_card.dart';
 import 'package:whats_app/features/auth/state_management/login_cubit/login_cubit.dart';
 import 'package:whats_app/features/chat/state_management/chat_cubit/chat_cubit.dart';
 

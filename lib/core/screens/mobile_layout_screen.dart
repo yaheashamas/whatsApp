@@ -75,28 +75,22 @@ class _MobileLayoutScreenState extends State<MobileLayoutScreen> {
             ),
           ),
           body: const ContactsList(),
-          floatingActionButton:
-              BlocBuilder<SelectContactCubit, SelectContactState>(
-            builder: (context, state) {
-              return FloatingActionButton(
-                onPressed: () async {
-                  if (await FlutterContacts.requestPermission()) {
-                    showSearch(
-                      context: context,
-                      delegate: SearchContact(
-                        contacts: state.contacts,
-                        selectContactCubit: selectContactCubit,
-                      ),
-                    );
-                  }
-                },
-                backgroundColor: tabColor,
-                child: const Icon(
-                  Icons.comment,
-                  color: Colors.white,
-                ),
-              );
+          floatingActionButton: FloatingActionButton(
+            onPressed: () async {
+              if (await FlutterContacts.requestPermission()) {
+                showSearch(
+                  context: context,
+                  delegate: SearchContact(
+                    selectContactCubit: selectContactCubit,
+                  ),
+                );
+              }
             },
+            backgroundColor: tabColor,
+            child: const Icon(
+              Icons.comment,
+              color: Colors.white,
+            ),
           ),
         ),
       ),

@@ -17,17 +17,36 @@ class MobileChatScreen extends StatefulWidget {
   State<MobileChatScreen> createState() => _MobileChatScreenState();
 }
 
-class _MobileChatScreenState extends State<MobileChatScreen> {
+class _MobileChatScreenState extends State<MobileChatScreen>
+    with WidgetsBindingObserver {
   late ChatCubit chatCubit;
   @override
   void initState() {
     super.initState();
     chatCubit = getIt.get<ChatCubit>(param1: widget.reciverUid);
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    switch (state) {
+      case AppLifecycleState.resumed:
+        chatCubit.updateStateUser(true);
+        break;
+      case AppLifecycleState.inactive:
+      case AppLifecycleState.detached:
+      case AppLifecycleState.paused:
+        chatCubit.updateStateUser(false);
+        break;
+      default:
+    }
   }
 
   @override
   void dispose() {
     chatCubit.close();
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 

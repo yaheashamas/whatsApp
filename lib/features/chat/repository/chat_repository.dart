@@ -190,4 +190,11 @@ class ChatRepository {
       },
     );
   }
+
+  void updateStateUser(bool status){
+    firebaseFirestore
+        .collection("users")
+        .doc(firebaseAuth.currentUser!.uid)
+        .update({"isOnline": status});
+  }
 }

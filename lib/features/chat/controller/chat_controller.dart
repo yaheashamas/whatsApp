@@ -31,4 +31,8 @@ class ChatController {
   Stream<List<Message>> getMessage(String reciverUid) async* {
     yield* chatRepository.getMessages(reciverUid);
   }
+
+  void updateStateUser(bool status) {
+    chatRepository.updateStateUser(status);
+  }
 }

@@ -17,6 +17,7 @@ class ChatCubit extends Cubit<ChatState> {
     required this.uID,
   }) : super(ChatState.inial()) {
     chatController.getUserInfo(uID).listen((user) {
+      if (isClosed) return;
       emit(state.copyWith(
         userModel: user,
         stateWidgetUser: StateWidget.loaded,
@@ -24,6 +25,7 @@ class ChatCubit extends Cubit<ChatState> {
     });
 
     chatController.getMessage(uID).listen((messages) {
+      if (isClosed) return;
       emit(state.copyWith(
         messages: messages,
         stateWidgetMessage: StateWidget.loaded,
@@ -41,5 +43,9 @@ class ChatCubit extends Cubit<ChatState> {
       reciverUserId: reciverUserId,
       message: message,
     );
+  }
+
+  void updateStateUser(bool status) {
+    chatController.updateStateUser(status);
   }
 }

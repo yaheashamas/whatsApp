@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:whats_app/core/extensions/string_extension.dart';
@@ -17,7 +18,8 @@ extension Unique<E, Id> on List<E> {
 
 class SelectContactRepository {
   final FirebaseFirestore firebaseFirestore;
-  SelectContactRepository(this.firebaseFirestore);
+  final FirebaseAuth firebaseAuth;
+  SelectContactRepository(this.firebaseFirestore,this.firebaseAuth);
 
   Future<List<UserModel>> getAllContactWhatsApp(
     List<Contact> contacts,
@@ -48,6 +50,7 @@ class SelectContactRepository {
     userHasWhatsUp.sort(
       (a, b) => a.invite.toString().compareTo(b.invite.toString()),
     );
+    userHasWhatsUp.removeWhere((users) => users.uid == firebaseAuth.currentUser!.uid);
     return userHasWhatsUp.unique((element) => element.phoneNumber);
   }
 

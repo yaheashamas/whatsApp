@@ -54,11 +54,13 @@ class _ChatListState extends State<ChatList> {
               return MyMessageCard(
                 message: state.messages![index].message.toString(),
                 date: timeSent,
+                messageEnum: state.messages![index].messageType,
               );
             }
             return SenderMessageCard(
               message: state.messages![index].message.toString(),
               date: timeSent,
+              messageEnum: state.messages![index].messageType,
             );
           },
         );

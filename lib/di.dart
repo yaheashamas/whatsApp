@@ -81,6 +81,7 @@ infoUser() async {
 selectContactCubit() async {
   getIt.registerSingleton<SelectContactRepository>(SelectContactRepository(
     getIt(),
+    getIt(),
   ));
   getIt.registerSingleton<SelectContactController>(SelectContactController(
     getIt(),
@@ -91,7 +92,11 @@ selectContactCubit() async {
 }
 
 chatGetIt() async {
-  getIt.registerSingleton<ChatRepository>(ChatRepository(getIt(), getIt()));
+  getIt.registerSingleton<ChatRepository>(ChatRepository(
+    getIt(),
+    getIt(),
+    getIt(),
+  ));
   getIt.registerSingleton<ChatController>(ChatController(getIt()));
   getIt.registerFactoryParam(
     (param1, param2) => ChatCubit(

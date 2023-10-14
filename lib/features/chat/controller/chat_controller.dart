@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:whats_app/core/enums/message_enum.dart';
 import 'package:whats_app/core/models/chat_contact.dart';
 import 'package:whats_app/core/models/message.dart';
 import 'package:whats_app/core/models/user_model.dart';
@@ -34,5 +37,19 @@ class ChatController {
 
   void updateStateUser(bool status) {
     chatRepository.updateStateUser(status);
+  }
+
+  void sendFileMessage({
+    required BuildContext context,
+    required File file,
+    required String reciverUid,
+    required MessageEnum messageEnum,
+  })async {
+    await chatRepository.sendFileMessage(
+      file: file,
+      reciverUid: reciverUid,
+      context: context,
+      messageEnum: messageEnum,
+    );
   }
 }

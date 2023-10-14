@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:whats_app/core/constants/const_color.dart';
+import 'package:whats_app/core/enums/message_enum.dart';
+import 'package:whats_app/core/permission/check_permission.dart';
+import 'package:whats_app/core/utils/snak_bar.dart';
 import 'package:whats_app/features/chat/screens/chat_list.dart';
 import 'package:whats_app/di.dart';
 import 'package:whats_app/features/auth/state_management/login_cubit/login_cubit.dart';
@@ -179,29 +182,52 @@ class _CustomInputWithRequordButtonState
               child: TextFormField(
                 controller: textEditingController,
                 autofocus: true,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   disabledBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   filled: true,
                   fillColor: mobileChatBoxColor,
-                  prefixIcon: Icon(
+                  prefixIcon: const Icon(
                     Icons.emoji_emotions,
                     color: Colors.grey,
                   ),
                   suffixIcon: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(
-                          Icons.camera_alt,
-                          color: Colors.grey,
+                        InkWell(
+                          onTap: () async {
+                            await CheckPermission.isStoragePermission()
+                                .then((value) {
+                              if (value) {
+                                getLostData(context).then((file) {
+                                  if (file != null) {
+                                    widget.chatCubit.sendFileMessage(
+                                      context: context,
+                                      file: file,
+                                      reciverUid: widget.reciverUid,
+                                      messageEnum: MessageEnum.image,
+                                    );
+                                  }
+                                });
+                              }
+                            });
+                          },
+                          child: const Icon(
+                            Icons.camera_alt,
+                            color: Colors.grey,
+                          ),
                         ),
-                        Icon(
-                          Icons.attach_file,
-                          color: Colors.grey,
+                        const SizedBox(width: 10),
+                        InkWell(
+                          onTap: () {},
+                          child: const Icon(
+                            Icons.attach_file,
+                            color: Colors.grey,
+                          ),
                         ),
                       ],
                     ),

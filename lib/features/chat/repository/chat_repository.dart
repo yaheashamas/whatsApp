@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
+import 'package:whats_app/core/common/firebase_storage_repository.dart';
 import 'package:whats_app/core/enums/message_enum.dart';
 import 'package:whats_app/core/models/chat_contact.dart';
 import 'package:whats_app/core/models/message.dart';
@@ -11,9 +14,11 @@ import 'package:whats_app/core/utils/snak_bar.dart';
 class ChatRepository {
   final FirebaseFirestore firebaseFirestore;
   final FirebaseAuth firebaseAuth;
+  final FireBaseStorageRepository fireBaseStorageRepository;
   ChatRepository(
     this.firebaseFirestore,
     this.firebaseAuth,
+    this.fireBaseStorageRepository,
   );
 
   Stream<UserModel> getUserInfo(String uid) async* {
@@ -47,7 +52,7 @@ class ChatRepository {
       _saveDataToContactsSubCollection(
         userSender: senderUserModel,
         userReciver: reciverUserModel,
-        message: message,
+        lastMessage: message,
         timeSent: timeSend,
       );
 
@@ -57,7 +62,7 @@ class ChatRepository {
         messageId: messageId,
         picture: reciverUserModel.profilePic,
         username: reciverUserModel.name,
-        lastMessage: message,
+        message: message,
         timeSent: timeSend,
         messageType: MessageEnum.text,
       );
@@ -69,7 +74,7 @@ class ChatRepository {
   _saveDataToContactsSubCollection({
     required UserModel userSender,
     required UserModel userReciver,
-    required String message,
+    required String lastMessage,
     required DateTime timeSent,
   }) async {
     //this help display message for reciver
@@ -78,7 +83,7 @@ class ChatRepository {
       contactId: userSender.uid,
       picName: userSender.profilePic,
       name: userSender.name,
-      lastMessage: message,
+      lastMessage: lastMessage,
       timeSent: timeSent,
     );
     await firebaseFirestore
@@ -93,7 +98,7 @@ class ChatRepository {
       contactId: userReciver.uid,
       picName: userReciver.profilePic,
       name: userReciver.name,
-      lastMessage: message,
+      lastMessage: lastMessage,
       timeSent: timeSent,
     );
     await firebaseFirestore
@@ -109,15 +114,15 @@ class ChatRepository {
     required String messageId,
     required String picture,
     required String username,
-    required String lastMessage,
+    required String message,
     required DateTime timeSent,
     required MessageEnum messageType,
   }) async {
-    Message message = Message(
+    Message messageModel = Message(
       senderUid: firebaseAuth.currentUser!.uid,
       reciverUid: reciverContactId,
       messageUid: messageId,
-      message: lastMessage,
+      message: message,
       time: timeSent,
       messageType: messageType,
       isSeen: false,
@@ -130,7 +135,7 @@ class ChatRepository {
         .doc(reciverContactId)
         .collection("messages")
         .doc(messageId)
-        .set(message.toMap());
+        .set(messageModel.toMap());
     // for reciver
     await firebaseFirestore
         .collection("users")
@@ -139,7 +144,7 @@ class ChatRepository {
         .doc(firebaseAuth.currentUser!.uid)
         .collection("messages")
         .doc(messageId)
-        .set(message.toMap());
+        .set(messageModel.toMap());
   }
 
   Stream<List<ChatContact>> getChatContact() async* {
@@ -191,10 +196,71 @@ class ChatRepository {
     );
   }
 
-  void updateStateUser(bool status){
+  void updateStateUser(bool status) {
     firebaseFirestore
         .collection("users")
         .doc(firebaseAuth.currentUser!.uid)
         .update({"isOnline": status});
+  }
+
+  sendFileMessage({
+    required File file,
+    required String reciverUid,
+    required BuildContext context,
+    required MessageEnum messageEnum,
+  }) async {
+    try {
+      //save fiel in firebase
+      var messageId = const Uuid().v1();
+      String imageUrl = await fireBaseStorageRepository.storeFileToFireBase(
+        "chats/${messageEnum.type}/${firebaseAuth.currentUser!.uid}/$reciverUid/$messageId",
+        file,
+      );
+
+      //get revicer and sender data
+      var senderUser = await firebaseFirestore
+          .collection("users")
+          .doc(firebaseAuth.currentUser!.uid)
+          .get();
+      var reciverUser =
+          await firebaseFirestore.collection("users").doc(reciverUid).get();
+      UserModel userReciver = UserModel.fromMap(reciverUser.data()!);
+      UserModel userSender = UserModel.fromMap(senderUser.data()!);
+      var timeSent = DateTime.now();
+      _saveMessageToContactsSubCollection(
+        reciverContactId: reciverUid,
+        messageId: messageId,
+        picture: userReciver.profilePic,
+        username: userReciver.name,
+        message: imageUrl,
+        timeSent: timeSent,
+        messageType: messageEnum,
+      );
+
+      String lastMessage = "";
+      switch (messageEnum) {
+        case MessageEnum.image:
+          lastMessage = "📸 Image";
+          break;
+        case MessageEnum.video:
+          lastMessage = "📹 Vider";
+          break;
+        case MessageEnum.audio:
+          lastMessage = "🎤 Audeo";
+          break;
+        case MessageEnum.gif:
+          lastMessage = "🏞️ Gif";
+          break;
+        default:
+      }
+      _saveDataToContactsSubCollection(
+        userSender: userSender,
+        userReciver: userReciver,
+        lastMessage: lastMessage,
+        timeSent: timeSent,
+      );
+    } catch (e) {
+      showSnakBar(context: context, content: e.toString());
+    }
   }
 }

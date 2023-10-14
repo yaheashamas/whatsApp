@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:whats_app/core/enums/message_enum.dart';
 import 'package:whats_app/core/models/message.dart';
 import 'package:whats_app/core/models/user_model.dart';
 import 'package:whats_app/features/auth/state_management/login_cubit/login_cubit.dart';
@@ -49,5 +51,19 @@ class ChatCubit extends Cubit<ChatState> {
 
   void updateStateUser(bool status) {
     chatController.updateStateUser(status);
+  }
+
+  void sendFileMessage({
+    required BuildContext context,
+    required File file,
+    required String reciverUid,
+    required MessageEnum messageEnum,
+  }) {
+    chatController.sendFileMessage(
+      context: context,
+      file: file,
+      reciverUid: reciverUid,
+      messageEnum: messageEnum,
+    );
   }
 }

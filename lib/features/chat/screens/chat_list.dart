@@ -46,6 +46,7 @@ class _ChatListState extends State<ChatList> {
         return ListView.builder(
           controller: scrollController,
           itemCount: state.messages!.length,
+          shrinkWrap: true,
           itemBuilder: (context, index) {
             var timeSent = DateFormat.Hm().format(
               state.messages![index].time,

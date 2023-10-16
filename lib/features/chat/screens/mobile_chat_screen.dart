@@ -21,13 +21,25 @@ class MobileChatScreen extends StatefulWidget {
 }
 
 class _MobileChatScreenState extends State<MobileChatScreen>
-    with WidgetsBindingObserver {
+    with WidgetsBindingObserver, SingleTickerProviderStateMixin {
   late ChatCubit chatCubit;
+  late AnimationController controller;
+  late Animation animationHight;
+  late Animation animationBorder;
+
   @override
   void initState() {
     super.initState();
     chatCubit = getIt.get<ChatCubit>(param1: widget.reciverUid);
     WidgetsBinding.instance.addObserver(this);
+
+    //animation
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 100),
+    );
+    animationHight = Tween(begin: 0.0, end: 1.0).animate(controller);
+    animationBorder = Tween(begin: 300.0, end: 20.0).animate(controller);
   }
 
   @override
@@ -141,13 +153,113 @@ class _MobileChatScreenState extends State<MobileChatScreen>
         ),
         body: Column(
           children: [
-            const Expanded(child: ChatList()),
+            Expanded(
+              child: Stack(
+                alignment: Alignment.bottomRight,
+                children: [
+                  const ChatList(),
+                  AnimatedBuilder(
+                    animation: animationHight,
+                    child: GridView(
+                      clipBehavior: Clip.hardEdge,
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.all(20),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        mainAxisExtent: 150,
+                        mainAxisSpacing: 20,
+                        crossAxisSpacing: 20,
+                      ),
+                      children: [
+                        customItemBottomSheetMenu(
+                          backGround: openDocumentColor,
+                          icon: Icons.insert_drive_file_rounded,
+                          title: "Document",
+                          onTap: () {},
+                        ),
+                        customItemBottomSheetMenu(
+                          backGround: openCameraColor,
+                          icon: Icons.camera_alt,
+                          title: "Camera",
+                          onTap: () {},
+                        ),
+                        customItemBottomSheetMenu(
+                          backGround: openGallaryColor,
+                          icon: Icons.image,
+                          title: "Gallary",
+                          onTap: () {},
+                        ),
+                        customItemBottomSheetMenu(
+                          backGround: openAudioColor,
+                          icon: Icons.headphones,
+                          title: "Audio",
+                          onTap: () {},
+                        ),
+                      ],
+                    ),
+                    builder: (BuildContext context, Widget? child) {
+                      return Container(
+                        clipBehavior: Clip.hardEdge,
+                        alignment: Alignment.bottomRight,
+                        height: animationHight.value * 250,
+                        margin: const EdgeInsets.all(20).copyWith(bottom: 0),
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: backgroundColor,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: controller.value <= 0.5 ? Container() : child,
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
             CustomInputWithRequordButton(
               chatCubit: chatCubit,
               reciverUid: widget.reciverUid,
+              onTapAttach: () {
+                if (controller.isCompleted) {
+                  controller.reverse();
+                } else {
+                  controller.forward();
+                }
+              },
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget customItemBottomSheetMenu({
+    required Color backGround,
+    required IconData? icon,
+    required String title,
+    required Function()? onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            height: 70,
+            width: 70,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: backGround,
+            ),
+            child: Icon(
+              icon,
+              size: 35,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(title),
+        ],
       ),
     );
   }
@@ -156,10 +268,12 @@ class _MobileChatScreenState extends State<MobileChatScreen>
 class CustomInputWithRequordButton extends StatefulWidget {
   final ChatCubit chatCubit;
   final String reciverUid;
+  final Function()? onTapAttach;
   const CustomInputWithRequordButton({
     super.key,
     required this.chatCubit,
     required this.reciverUid,
+    required this.onTapAttach,
   });
 
   @override
@@ -223,7 +337,7 @@ class _CustomInputWithRequordButtonState
                         ),
                         const SizedBox(width: 10),
                         InkWell(
-                          onTap: () {},
+                          onTap: widget.onTapAttach,
                           child: const Icon(
                             Icons.attach_file,
                             color: Colors.grey,

@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:whats_app/core/constants/const_color.dart';
+import 'package:whats_app/core/enums/message_enum.dart';
+import 'package:whats_app/core/utils/snak_bar.dart';
+import 'package:whats_app/features/chat/state_management/chat_cubit/chat_cubit.dart';
 import 'package:whats_app/features/chat/widgets/custom_item_buttom_sheet_menu.dart';
 
 class CustomButtomSheetBar extends StatelessWidget {
   final AnimationController controller;
+  final ChatCubit chatCubit;
+  final String reciverUid;
   final Animation animationHight;
   final Animation animationWidth;
   CustomButtomSheetBar({
     super.key,
     required this.controller,
+    required this.chatCubit,
+    required this.reciverUid,
   })  : animationHight = Tween<double>(begin: 0.0, end: 1.0).animate(
           CurvedAnimation(
             parent: controller,
@@ -53,7 +60,18 @@ class CustomButtomSheetBar extends StatelessWidget {
             backGround: openGallaryColor,
             icon: Icons.image,
             title: "Gallary",
-            onTap: () {},
+            onTap: () async {
+              getVideoFile(context).then((file) {
+                if (file != null) {
+                  chatCubit.sendFileMessage(
+                    context: context,
+                    file: file,
+                    reciverUid: reciverUid,
+                    messageEnum: MessageEnum.video,
+                  );
+                }
+              });
+            },
           ),
           CustomItemButtonSheetMenu(
             backGround: openAudioColor,

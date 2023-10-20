@@ -91,6 +91,8 @@ class _MobileChatScreenState extends State<MobileChatScreen>
                     const ChatList(),
                     CustomButtomSheetBar(
                       controller: controller,
+                      reciverUid:widget.reciverUid,
+                      chatCubit: chatCubit,
                     ),
                   ],
                 ),

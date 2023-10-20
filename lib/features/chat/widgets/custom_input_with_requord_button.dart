@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whats_app/core/constants/const_color.dart';
 import 'package:whats_app/core/enums/message_enum.dart';
-import 'package:whats_app/core/permission/check_permission.dart';
 import 'package:whats_app/core/utils/snak_bar.dart';
 import 'package:whats_app/features/chat/state_management/chat_cubit/chat_cubit.dart';
 
@@ -54,19 +53,14 @@ class _CustomInputWithRequordButtonState
                       children: [
                         InkWell(
                           onTap: () async {
-                            await CheckPermission.isStoragePermission()
-                                .then((value) {
-                              if (value) {
-                                getLostData(context).then((file) {
-                                  if (file != null) {
-                                    widget.chatCubit.sendFileMessage(
-                                      context: context,
-                                      file: file,
-                                      reciverUid: widget.reciverUid,
-                                      messageEnum: MessageEnum.image,
-                                    );
-                                  }
-                                });
+                            getImageFile(context).then((file) {
+                              if (file != null) {
+                                widget.chatCubit.sendFileMessage(
+                                  context: context,
+                                  file: file,
+                                  reciverUid: widget.reciverUid,
+                                  messageEnum: MessageEnum.image,
+                                );
                               }
                             });
                           },

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:whats_app/core/global/widgets/text_form_field/custom_text_form_field.dart';
-import 'package:whats_app/core/permission/check_permission.dart';
 import 'package:whats_app/core/utils/snak_bar.dart';
 import 'package:whats_app/di.dart';
 import 'package:whats_app/features/auth/state_management/info_user_cubit/info_user_cubit.dart';
@@ -69,13 +68,8 @@ class _InfoUserScreenState extends State<InfoUserScreen> {
                       ),
                       child: IconButton(
                         onPressed: () async {
-                          await CheckPermission.isStoragePermission()
-                              .then((value) {
-                            if (value) {
-                              getLostData(context).then((value) {
-                                infoUserCubit.changeImage(value);
-                              });
-                            }
+                          getImageFile(context).then((value) {
+                            infoUserCubit.changeImage(value);
                           });
                         },
                         icon: const Icon(Icons.add_a_photo_outlined),

@@ -31,8 +31,10 @@ class _MessageTextOrImageState extends State<MessageTextOrImage> {
 
   @override
   void dispose() {
+    if (widget.messageEnum == MessageEnum.video) {
+      _controller.dispose();
+    }
     super.dispose();
-    _controller.dispose();
   }
 
   @override
